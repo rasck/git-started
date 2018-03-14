@@ -9,8 +9,12 @@ class RepoList extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, marginTop: 5 }}>
-        <FlatList data={this.props.repoList} renderItem={this.renderRow} />
+      <View style={{ marginTop: 5 }}>
+        <FlatList
+          data={this.props.repoList}
+          renderItem={this.renderRow}
+          keyExtractor={item => item.id}
+        />
       </View>
     );
   }

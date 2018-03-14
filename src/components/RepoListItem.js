@@ -7,14 +7,14 @@ class RepoListItem extends Component {
     Actions.repoDetailsView({ repo: this.props.repo });
   }
   render() {
-    const { name, stars } = this.props.attraction;
+    const { full_name, stargazers_count } = this.props.attraction;
 
     return (
       <View>
         <CardSection>
           <View>
-            <Text>{name}</Text>
-            <Text>{stars}</Text>
+            <Text>Repo: {full_name}</Text>
+            <Text>Stars: {stargazers_count}</Text>
           </View>
         </CardSection>
       </View>
