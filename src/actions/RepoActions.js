@@ -1,13 +1,15 @@
 import {
   REPOS_FETCH_SUCCESS,
   REPOS_FETCH_FAILED,
-  REPOS_FETCH_PENDING
+  REPOS_FETCH_PENDING,
+  FAV_REPOS_FECTH,
+  REPO_SELECTED,
+  FAV_REPOS_ADD,
+  FAV_REPOS_REMOVE
 } from "./types";
 
 const topReposUrl =
   "https://api.github.com/search/repositories?sort=stars&q=language:js&order=desc";
-const testUrl =
-  "https://api.github.com/search/repositories?sort=stars&q=canvasapp-nodeJS-base&language=js&order=desc";
 
 export const topReposFetch = () => {
   //TODO: Handle pagination
@@ -24,6 +26,16 @@ export const topReposFetch = () => {
       });
   };
 };
+
+export const addRepoToFav = payload => ({
+  type: FAV_REPOS_ADD,
+  payload
+});
+
+export const removeRepoFromFav = payload => ({
+  type: FAV_REPOS_REMOVE,
+  payload
+});
 
 export const serviceActionPending = () => ({
   type: REPOS_FETCH_PENDING

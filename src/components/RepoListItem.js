@@ -1,31 +1,38 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableHighlight } from "react-native";
 import { CardSection } from "./common";
+import { Ionicons } from "@expo/vector-icons";
 
 class RepoListItem extends Component {
   onRowPress() {
-    Actions.repoDetailsView({ repo: this.props.repo });
+    const repo = this.props.repo;
+    this.props.navigation.navigate("RepoDetails", { repo });
   }
   render() {
-    const { full_name, stargazers_count } = this.props.attraction;
+    const { full_name, stargazers_count } = this.props.repo;
 
     return (
-      <View>
+      <TouchableHighlight onPress={() => this.onRowPress()}>
         <CardSection>
           <View>
-            <Text>Repo: {full_name}</Text>
-            <Text>Stars: {stargazers_count}</Text>
+            <Text style={styles.textStyle}>{full_name}</Text>
+            <Text style={styles.starStyle}>
+              <Ionicons name="ios-star" size={18} color="black" />
+              {stargazers_count}
+            </Text>
           </View>
         </CardSection>
-      </View>
+      </TouchableHighlight>
     );
   }
 }
 
 const styles = {
+  starStyle: {
+    fontSize: 18
+  },
   textStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+    fontWeight: "600"
   }
 };
 

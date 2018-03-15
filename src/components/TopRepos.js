@@ -10,6 +10,9 @@ class TopRepos extends Component {
     super();
     this.state = { dataSource: null };
   }
+  static navigationOptions = {
+    title: "Top repositories"
+  };
 
   componentDidMount() {
     this.props.service();
@@ -25,14 +28,13 @@ class TopRepos extends Component {
     }
   }
 
-  renderRow({ item }) {
-    return <RepoListItem attraction={item} />;
-  }
-
   render() {
     return (
-      <View style={{ flex: 1, marginTop: 5 }}>
-        <RepoList repoList={this.state.dataSource} />
+      <View style={{ flex: 1 }}>
+        <RepoList
+          navigation={this.props.navigation}
+          repoList={this.state.dataSource}
+        />
         <ActivityIndicator
           animating={this.props.isLoading}
           style={{
