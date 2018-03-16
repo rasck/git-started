@@ -34,3 +34,8 @@ export const removeRepoFromFav = payload => ({
   type: Actions.FAV_REPOS_REMOVE,
   payload
 });
+
+export const selectFavRepo = repo => ({
+  type: Actions.SELECT_FAV_REPO,
+  payload: repo
+});

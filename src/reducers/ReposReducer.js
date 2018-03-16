@@ -7,7 +7,8 @@ import {
 const INITIAL_STATE = {
   isLoading: false,
   error: undefined,
-  data: null
+  data: null,
+  selectedRepo: {}
 };
 
 export default (state = INITIAL_STATE, action) => {

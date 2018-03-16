@@ -6,15 +6,28 @@ import { connect } from "react-redux";
 import { addRepoToFav, removeRepoFromFav, updateRepoInFav } from "../actions";
 
 class RepoDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { repo: props.navigation.state.params.repo };
+  }
   componentDidMount() {
-    const repo = this.props.navigation.state.params.repo;
-    if (repo.shouldUpdate) this.props.update(repo);
+    // const repo = this.props.navigation.state.params.repo;
+
+    if (this.state.repo.shouldUpdate) this.props.update(this.state.repo);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const repo = nextProps.navigation.state.params.repo;
+    if (repo.shouldUpdate) {
+      console.log("repo should update");
+      this.setState({ repo: repo });
+    }
   }
 
   isSelectedReopInFavourite() {
     if (this.props.favList) {
-      const repo = this.props.navigation.state.params.repo;
-      const result = this.props.favList.find(r => r.id === repo.id);
+      //const repo = this.props.navigation.state.params.repo;
+      const result = this.props.favList.find(r => r.id === this.state.repo.id);
       if (result) return true;
       else return false;
     }
@@ -24,7 +37,8 @@ class RepoDetail extends Component {
   render() {
     console.log("render repo details");
     // ToDo integrate navigation into redux, this get too cumbersome, errorprone and ugly...
-    const repo = this.props.navigation.state.params.repo;
+    //const repo = this.props.navigation.state.params.repo;
+    const repo = this.state.repo;
     const { open_issues, owner, name, stargazers_count } = repo;
     const isFav = this.isSelectedReopInFavourite(repo);
     return (

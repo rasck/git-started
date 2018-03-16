@@ -13,7 +13,6 @@ import { addPullRequests } from "../actions";
 
 class PullsComponent extends Component {
   componentDidMount() {
-    if (!this.props.repo) console.log("no repo provided!");
     this.props.fetchPulls(this.props.repo);
   }
 

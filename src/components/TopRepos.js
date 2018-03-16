@@ -14,6 +14,10 @@ class TopRepos extends Component {
     title: "Top repositories"
   };
 
+  onSelectRepo(repo){
+
+  }
+
   componentDidMount() {
     this.props.service();
   }
@@ -34,6 +38,7 @@ class TopRepos extends Component {
         <RepoList
           navigation={this.props.navigation}
           repoList={this.state.dataSource}
+          onSelect={this.onSelectRepo.bind(this)}
         />
         <ActivityIndicator
           animating={this.props.isLoading}

@@ -5,7 +5,8 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  data: []
+  data: [],
+  selectedRepo: {}
 };
 
 const remove = (array, element) => {
@@ -18,11 +19,13 @@ function update(array, element) {
       // This isn't the item we care about - keep it as-is
       return item;
     }
+    console.log("replacing item");
     // Otherwise, this is the one we want - return an updated value
-    return {
-      ...item,
-      ...element
-    };
+    return { id: element.id };
+    // return {
+    //   ...item,
+    //   ...element
+    // };
   });
 }
 

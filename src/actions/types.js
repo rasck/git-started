@@ -9,3 +9,5 @@ export const FAV_REPOS_PENDING = "fav_repos_pending";
 export const ADD_PULLS_SUCCEDED = "fav_repos_succeded";
 export const ADD_PULSS_FAILED = "add_pulls_failed";
 export const ADD_PULLS_PENDING = "add_pulls_pending";
+export const SELECT_FAV_REPO = "select_fav_repo";
+export const SELECT_REPO = "select_repo";

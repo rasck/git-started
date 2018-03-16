@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 class RepoListItem extends Component {
   onRowPress() {
     const repo = this.props.repo;
+    this.props.onSelect(repo);
     this.props.navigation.navigate("RepoDetails", { repo });
   }
   render() {

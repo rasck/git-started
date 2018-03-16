@@ -25,3 +25,8 @@ export const topReposFetch = () => {
       });
   };
 };
+
+export const selectRepo = repo => ({
+  type: Actions.SELECT_REPO,
+  payload: repo
+});

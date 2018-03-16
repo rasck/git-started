@@ -11,6 +11,7 @@ class FavRepos extends Component {
   renderRow({ item }) {
     return <RepoListItem attraction={item} />;
   }
+  onSelectRepo(repo) {}
 
   render() {
     return (
@@ -18,6 +19,7 @@ class FavRepos extends Component {
         <RepoList
           navigation={this.props.navigation}
           repoList={this.props.dataSource}
+           onSelect={this.onSelectRepo.bind(this)}
         />
       </View>
     );

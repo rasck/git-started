@@ -11,8 +11,9 @@ class RepoList extends Component {
   componentDidMount() {
     this.setState({ navigation: this.props.navigation });
   }
+ 
   renderRow({ item }) {
-    return <RepoListItem navigation={this.props.navigation} repo={item} />;
+    return <RepoListItem navigation={this.props.navigation} repo={item}  onSelect={this.props.onSelect}/>;
   }
   render() {
     return (
