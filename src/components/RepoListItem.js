@@ -12,7 +12,7 @@ class RepoListItem extends Component {
     const { full_name, stargazers_count } = this.props.repo;
 
     return (
-      <TouchableHighlight onPress={() => this.onRowPress()}>
+      <TouchableHighlight onPress={this.onRowPress.bind(this)}>
         <CardSection>
           <View>
             <Text style={styles.textStyle}>{full_name}</Text>

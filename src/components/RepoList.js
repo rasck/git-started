@@ -19,7 +19,7 @@ class RepoList extends Component {
       <View style={{ marginTop: 5 }}>
         <FlatList
           data={this.props.repoList}
-          renderItem={row => this.renderRow(row)}
+          renderItem={this.renderRow.bind(this)}
           keyExtractor={item => item.id}
         />
       </View>

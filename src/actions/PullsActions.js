@@ -15,7 +15,9 @@ export const addPullRequests = payload => {
       .then(res => {
         // Could also filter by cretad date...
         res.splice(10);
-        payload.pullRequests = res;
+        payload = res.map(p => {
+          return { id: p.id, title: p.title };
+        });
         dispatch(serviceActionSuccess(payload, Actions.ADD_PULLS_SUCCEDED));
       })
       .catch(error => {

@@ -13,6 +13,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_PULLS_SUCCEDED:
+      console.log("add pulls succeded");
       return Object.assign({}, state, {
         isLoading: false,
         data: action.payload
