@@ -9,7 +9,7 @@ import {
   Button
 } from "react-native";
 import { connect } from "react-redux";
-import { addRepoToFav, removeRepoFromFav } from "../actions";
+import { addRepoToFav, removeRepoFromFav, updateRepoInFav } from "../actions";
 
 // Too much logic and state in this component... Some state handling should be moved to redux and the component could be split into sub components
 class RepoDetail extends Component {
@@ -22,6 +22,9 @@ class RepoDetail extends Component {
     };
   }
   componentDidMount() {
+    const repo = this.props.navigation.state.params.repo;
+    if (repo.shouldUpdate) this.props.update(repo);
+
     // TODO: Could move to redux. But for now it is only used internally
     this.makeRemoteRequest();
   }
@@ -37,7 +40,6 @@ class RepoDetail extends Component {
   }
 
   makeRemoteRequest = () => {
-    console.log("making remote request....");
     const repo = this.props.navigation.state.params.repo;
     const url = sanitizePullsUrl(repo.pulls_url);
     this.setState({ loading: true });
@@ -131,6 +133,7 @@ class RepoDetail extends Component {
   }
 
   render() {
+    console.log("render repo details");
     // ToDo integrate navigation into redux, this get too cumbersome, errorprone and ugly...
     const repo = this.props.navigation.state.params.repo;
     const { open_issues, owner, name, stargazers_count } = repo;
@@ -225,7 +228,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   add: repo => dispatch(addRepoToFav(repo)),
-  remove: repo => dispatch(removeRepoFromFav(repo))
+  remove: repo => dispatch(removeRepoFromFav(repo)),
+  update: repo => dispatch(updateRepoInFav(repo.url))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepoDetail);
