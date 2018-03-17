@@ -2,7 +2,7 @@ import {
   REPOS_FETCH_SUCCESS,
   REPOS_FETCH_PENDING,
   REPOS_FETCH_FAILED,
-  SELECT_REPO
+  REPOS_FILTER
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -26,6 +26,12 @@ export default (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, {
         isLoading: false,
         error: action.error
+      });
+    case REPOS_FILTER:
+      return Object.assign({}, state, {
+        data: state.data.filter(r => {
+          return r.name.toLocaleLowerCase().startsWith(action.payload);
+        })
       });
     default:
       return state;

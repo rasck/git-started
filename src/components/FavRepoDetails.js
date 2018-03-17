@@ -25,8 +25,6 @@ class FavRepoDetails extends Component {
         />
       );
     } else {
-      console.log("updated repo");
-      console.log(this.props.updatedRepo);
       return (
         <RepoDetails
           repo={this.props.updatedRepo}

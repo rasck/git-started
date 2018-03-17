@@ -3,7 +3,12 @@ import { Text, View, Image } from "react-native";
 import PullsComponent from "./PullsComponent";
 import RepoDetailButton from "./RepoDetailButton";
 import { connect } from "react-redux";
-import { addRepoToFav, removeRepoFromFav, updateRepoInFav } from "../actions";
+import {
+  addRepoToFav,
+  removeRepoFromFav,
+  updateRepoInFav,
+  fetchRepo
+} from "../actions";
 
 class RepoDetail extends Component {
   constructor(props) {
@@ -20,6 +25,10 @@ class RepoDetail extends Component {
       else return false;
     }
     return false;
+  }
+
+  onRefresh() {
+    this.props.fetchRepo(this.state.repo);
   }
 
   render() {
@@ -49,6 +58,7 @@ class RepoDetail extends Component {
             isFav={isFav}
             remove={this.props.remove}
             add={this.props.add}
+            refresh={this.onRefresh.bind(this)}
           />
         </View>
       </View>
@@ -98,15 +108,15 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    favList: state.fav.data,
-    selected: state.fav.selectedRepo
+    favList: state.fav.data
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   add: repo => dispatch(addRepoToFav(repo)),
   remove: repo => dispatch(removeRepoFromFav(repo)),
-  update: repo => dispatch(updateRepoInFav(repo.url))
+  update: repo => dispatch(updateRepoInFav(repo.url)),
+  fetchRepo: repo => dispatch(fetchRepo(repo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepoDetail);

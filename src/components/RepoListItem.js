@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TouchableHighlight } from "react-native";
-import { CardSection } from "./common";
+import { ListItem } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 
 class RepoListItem extends Component {
@@ -13,15 +13,15 @@ class RepoListItem extends Component {
 
     return (
       <TouchableHighlight onPress={this.onRowPress.bind(this)}>
-        <CardSection>
-          <View>
-            <Text style={styles.textStyle}>{name}</Text>
+        <ListItem
+          title={name}
+          subtitle={
             <Text style={styles.starStyle}>
-              <Ionicons name="ios-star" size={18} color="black" />
+              <Ionicons name="ios-star" size={12} color="black" />{" "}
               {stargazers_count}
             </Text>
-          </View>
-        </CardSection>
+          }
+        />
       </TouchableHighlight>
     );
   }
@@ -29,10 +29,11 @@ class RepoListItem extends Component {
 
 const styles = {
   starStyle: {
-    fontSize: 18
+    fontSize: 12
   },
   textStyle: {
-    fontWeight: "600"
+    fontWeight: "600",
+    fontSize: 18
   }
 };
 

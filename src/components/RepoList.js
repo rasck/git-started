@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { ListView, FlatList, View } from "react-native";
+import { ListView, FlatList, View, Text } from "react-native";
+import { SearchBar, List } from "react-native-elements";
 import RepoListItem from "./RepoListItem";
-import { Card } from "./common";
 
 class RepoList extends Component {
+  empty = () => null;
   renderRow({ item }) {
     return (
       <RepoListItem
@@ -16,13 +17,14 @@ class RepoList extends Component {
   }
   render() {
     return (
-      <View style={{ marginTop: 5 }}>
+      <List>
         <FlatList
           data={this.props.repoList}
           renderItem={this.renderRow.bind(this)}
           keyExtractor={item => item.id}
+          ListHeaderComponent={this.props.renderHeader || this.empty}
         />
-      </View>
+      </List>
     );
   }
 }

@@ -1,6 +1,7 @@
 export const REPOS_FETCH_SUCCESS = "repos_fetch_success";
 export const REPOS_FETCH_PENDING = "repos_fetch_pedning";
 export const REPOS_FETCH_FAILED = "repos_fetch_failed";
+export const REPOS_FILTER = "filter_repos";
 export const REPO_FETCH_SUCCESS = "repo_fetch_success";
 export const REPO_FETCH_PENDING = "repo_fetch_pedning";
 export const REPO_FETCH_FAILED = "repo_fetch_failed";

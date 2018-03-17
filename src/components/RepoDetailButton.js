@@ -9,17 +9,18 @@ class RepoDetailButton extends Component {
       this.props.add(repo);
     }
   }
-
   renderButton(isFav, repo) {
     switch (isFav) {
       case true:
         return (
-          <Button
-            onPress={this.onPress.bind(this, isFav, repo)}
-            title="Remove from favourites"
-            color="#03A9F4"
-            accessibilityLabel="Remove this repo from your favourites"
-          />
+          <View style={{ flexDirection: "row" }}>
+            <Button
+              onPress={this.onPress.bind(this, isFav, repo)}
+              title="Remove from favourites"
+              color="#03A9F4"
+              accessibilityLabel="Remove this repo from your favourites"
+            />
+          </View>
         );
       case false:
         return (
@@ -46,7 +47,7 @@ class RepoDetailButton extends Component {
 
 const styles = {
   buttonContainer: {
-    flex: 0.1,
+    flex: 0.2,
     paddingTop: 5,
     alignItems: "center",
     justifyContent: "center"

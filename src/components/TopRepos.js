@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import RepoList from "./RepoList";
-import { topReposFetch } from "../actions";
-import { Card } from "./common";
-
+import { topReposFetch, filterRepos } from "../actions";
+import { SearchBar } from "react-native-elements";
 class TopRepos extends Component {
   static navigationOptions = {
     title: "Top repositories"
@@ -20,6 +19,9 @@ class TopRepos extends Component {
     this.props.service();
   }
 
+  renderHeader = () => {
+    return <SearchBar placeholder="Not implemented..." lightTheme round />;
+  };
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -27,6 +29,7 @@ class TopRepos extends Component {
           navigation={this.props.navigation}
           repoList={this.props.data}
           onSelect={this.onSelectRepo.bind(this)}
+          renderHeader={this.renderHeader.bind(this)}
         />
         <ActivityIndicator
           animating={this.props.isLoading}
@@ -49,7 +52,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  service: () => dispatch(topReposFetch())
+  service: () => dispatch(topReposFetch()),
+  filterRepos: searchString => dispatch(filterRepos(searchString))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopRepos);

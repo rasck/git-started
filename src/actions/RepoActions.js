@@ -27,6 +27,10 @@ export const topReposFetch = () => {
   };
 };
 
+export const filterRepos = payload => {
+  return { type: Actions.REPOS_FILTER, payload };
+};
+
 const toRepoModel = r => {
   return {
     id: r.id,
@@ -37,20 +41,6 @@ const toRepoModel = r => {
     pulls_url: r.pulls_url,
     name: r.name,
     stargazers_count: r.stargazers_count
-  };
-};
-
-const testModel = r => {
-  return {
-    id: "100000",
-    url: "https://avatars3.githubusercontent.com/u/2775751?v=4",
-    open_issues: "100",
-    full_name: "Test repository",
-    owner: "Test Owner",
-    pulls_url:
-      "https://api.github.com/repos/Dogfalo/materialize/pulls{/number}",
-    name: "Test Name",
-    stargazers_count: "999"
   };
 };
 
