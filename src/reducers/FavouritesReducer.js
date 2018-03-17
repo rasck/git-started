@@ -6,8 +6,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  data: [],
-  selectedRepo: {}
+  data: []
 };
 
 const remove = (array, element) => {
@@ -44,10 +43,6 @@ export default (state = INITIAL_STATE, action) => {
       console.log("updating");
       return Object.assign({}, state, {
         data: update(state.data, action.payload)
-      });
-    case SELECT_FAV_REPO:
-      return Object.assign({}, state, {
-        selectedRepo: action.payload
       });
     default:
       return state;

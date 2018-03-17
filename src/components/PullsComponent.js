@@ -45,7 +45,7 @@ class PullsComponent extends Component {
       return (
         <FlatList
           data={this.props.pulls}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
+          renderItem={({ item }) => <RenderRow repo={item} />}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
         />
@@ -62,6 +62,15 @@ class PullsComponent extends Component {
     );
   }
 }
+
+const RenderRow = ({ repo }) => (
+  <View>
+    <Text>Title: {repo.title}</Text>
+    <Text>Number: {repo.number}</Text>
+    <Text>State: {repo.status}</Text>
+    <Text>Author: {repo.author}</Text>
+  </View>
+);
 
 const styles = {
   pullsTextStyle: {

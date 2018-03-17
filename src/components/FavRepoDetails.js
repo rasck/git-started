@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import { fetchRepo } from "../actions";
-import RepoDetail from "./RepoDetail";
+import RepoDetails from "./RepoDetails";
 
 class FavRepoDetails extends Component {
   componentDidMount() {
-    this.props.fetchRepo(this.props.repo);
+    this.props.fetchRepo(this.props.navigation.state.params.repo);
   }
 
   renderListOrActivityLoader() {
@@ -25,8 +25,10 @@ class FavRepoDetails extends Component {
         />
       );
     } else {
+      console.log("updated repo");
+      console.log(this.props.updatedRepo);
       return (
-        <RepoDetail
+        <RepoDetails
           repo={this.props.updatedRepo}
           navigation={this.props.navigation}
         />
@@ -49,7 +51,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchRepo: repo => dispatch(fetchRepo(repo))
+  fetchRepo: (repo, props) => dispatch(fetchRepo(repo, props))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavRepoDetails);

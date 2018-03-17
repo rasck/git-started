@@ -8,7 +8,7 @@ import { addRepoToFav, removeRepoFromFav, updateRepoInFav } from "../actions";
 class RepoDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { repo: props.navigation.state.params.repo };
+    this.state = { repo: props.repo || props.navigation.state.params.repo };
   }
 
   // This is leakey. Repo details should not know this...
@@ -22,13 +22,12 @@ class RepoDetail extends Component {
     return false;
   }
 
-
   render() {
     // ToDo integrate navigation into redux, this get too cumbersome, errorprone and ugly...
     //const repo = this.props.navigation.state.params.repo;
     const repo = this.state.repo;
     const { open_issues, owner, name, stargazers_count } = repo;
-    const isFav = this.isSelectedReopInFavourite(repo);
+    const isFav = this.isSelectedReopInFavourite();
     return (
       <View style={{ flex: 1 }}>
         <Image

@@ -8,8 +8,7 @@ import {
 const INITIAL_STATE = {
   isLoading: false,
   error: undefined,
-  data: null,
-  selectedRepo: {}
+  data: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,10 +26,6 @@ export default (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, {
         isLoading: false,
         error: action.error
-      });
-    case SELECT_REPO:
-      return Object.assign({}, state, {
-        selectedRepo: action.payload
       });
     default:
       return state;

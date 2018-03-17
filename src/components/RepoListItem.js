@@ -9,13 +9,13 @@ class RepoListItem extends Component {
     this.props.onSelect(repo);
   }
   render() {
-    const { full_name, stargazers_count } = this.props.repo;
+    const { name, stargazers_count } = this.props.repo;
 
     return (
       <TouchableHighlight onPress={this.onRowPress.bind(this)}>
         <CardSection>
           <View>
-            <Text style={styles.textStyle}>{full_name}</Text>
+            <Text style={styles.textStyle}>{name}</Text>
             <Text style={styles.starStyle}>
               <Ionicons name="ios-star" size={18} color="black" />
               {stargazers_count}

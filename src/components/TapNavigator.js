@@ -2,10 +2,10 @@ import React from "react";
 import { TabNavigator, StackNavigator, TabBarBottom } from "react-navigation";
 import TopReposfrom from "./TopRepos";
 import FavRepos from "./FavRepos";
-import RepoDetail from "./RepoDetail";
+import RepoDetails from "./RepoDetails";
 import RepoListItem from "./RepoListItem";
 import RepoList from "./RepoList";
-import FavRepoDetail from "./FavRepoDetail";
+import FavRepoDetails from "./FavRepoDetails";
 import TopRepos from "./TopRepos";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -14,17 +14,8 @@ const FavReposNavigation = StackNavigator(
     FavRepos: {
       screen: FavRepos
     },
-    RepoList: {
-      screen: RepoList
-    },
-    RepoListItem: {
-      screen: RepoListItem
-    },
-    RepoDetails: {
-      screen: RepoDetail
-    },
-    FavRepoDetail: {
-      screen: FavRepoDetail
+    FavRepoDetails: {
+      screen: FavRepoDetails
     }
   },
   {
@@ -36,14 +27,8 @@ const TopReposNavigation = StackNavigator(
     TopRepos: {
       screen: TopRepos
     },
-    RepoList: {
-      screen: RepoList
-    },
-    RepoListItem: {
-      screen: RepoListItem
-    },
     RepoDetails: {
-      screen: RepoDetail
+      screen: RepoDetails
     }
   },
   {
@@ -75,7 +60,7 @@ export default TabNavigator(
       activeTintColor: "#0091EA",
       inactiveTintColor: "gray"
     },
-    animationEnabled: false,
-    swipeEnabled: false
+    animationEnabled: true,
+    swipeEnabled: true
   }
 );

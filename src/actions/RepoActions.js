@@ -16,17 +16,9 @@ export const topReposFetch = () => {
       .then(response => response.json())
       .then(responseJson => {
         const repos = responseJson.items.map(r => {
-          return {
-            id: r.id,
-            open_issues: r.open_issues,
-            owner: r.owner,
-            name: r.name,
-            stargazers_count: r.stargazers_count
-          };
+          return toRepoModel(r);
         });
-        dispatch(
-          serviceActionSuccess(responseJson.items, Actions.REPOS_FETCH_SUCCESS)
-        );
+        dispatch(serviceActionSuccess(repos, Actions.REPOS_FETCH_SUCCESS));
       })
       .catch(error => {
         console.error(error);
@@ -35,23 +27,41 @@ export const topReposFetch = () => {
   };
 };
 
-export const fetchRepo = repo => {
+const toRepoModel = r => {
+  return {
+    id: r.id,
+    url: r.url,
+    open_issues: r.open_issues,
+    full_name: r.full_name,
+    owner: r.owner,
+    pulls_url: r.pulls_url,
+    name: r.name,
+    stargazers_count: r.stargazers_count
+  };
+};
+
+const testModel = r => {
+  return {
+    id: "100000",
+    url: "https://avatars3.githubusercontent.com/u/2775751?v=4",
+    open_issues: "100",
+    full_name: "Test repository",
+    owner: "Test Owner",
+    pulls_url:
+      "https://api.github.com/repos/Dogfalo/materialize/pulls{/number}",
+    name: "Test Name",
+    stargazers_count: "999"
+  };
+};
+
+export const fetchRepo = (repo, props) => {
   return dispatch => {
     dispatch(serviceActionPending(Actions.REPO_FETCH_PENDING));
-    fetch(topReposUrl)
+    fetch(repo.url)
       .then(response => response.json())
       .then(responseJson => {
-        const repo = {
-          id: responseJson.id,
-          open_issues: responseJson.open_issues,
-          owner: responseJson.owner,
-          name: responseJson.name,
-          stargazers_count: responseJson.stargazers_count
-        };
-
-        dispatch(
-          serviceActionSuccess(responseJson.items, Actions.REPO_FETCH_SUCCESS)
-        );
+        const repoModel = toRepoModel(responseJson);
+        dispatch(serviceActionSuccess(repoModel, Actions.REPO_FETCH_SUCCESS));
       })
       .catch(error => {
         console.error(error);
@@ -59,8 +69,3 @@ export const fetchRepo = repo => {
       });
   };
 };
-
-export const selectRepo = repo => ({
-  type: Actions.SELECT_REPO,
-  payload: repo
-});
