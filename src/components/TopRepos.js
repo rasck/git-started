@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import RepoList from "./RepoList";
-import { topReposFetch } from "../actions";
+import { topReposFetch, selectRepo } from "../actions";
 import { Card } from "./common";
 
 class TopRepos extends Component {
@@ -14,8 +14,13 @@ class TopRepos extends Component {
     title: "Top repositories"
   };
 
-  onSelectRepo(repo){
-
+  onSelectRepo(repo) {
+    console.log("selecting top repo");
+    console.log(repo.full_name);
+    this.props.selectRepo(repo);
+    this.props.navigation.navigate("RepoDetails", {
+      repo
+    });
   }
 
   componentDidMount() {
@@ -61,7 +66,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  service: () => dispatch(topReposFetch())
+  service: () => dispatch(topReposFetch()),
+  selectRepo: repo => dispatch(selectRepo(repo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopRepos);

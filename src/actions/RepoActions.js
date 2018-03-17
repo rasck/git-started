@@ -15,6 +15,15 @@ export const topReposFetch = () => {
     fetch(topReposUrl)
       .then(response => response.json())
       .then(responseJson => {
+        const repos = responseJson.items.map(r => {
+          return {
+            id: r.id,
+            open_issues: r.open_issues,
+            owner: r.owner,
+            name: r.name,
+            stargazers_count: r.stargazers_count
+          };
+        });
         dispatch(
           serviceActionSuccess(responseJson.items, Actions.REPOS_FETCH_SUCCESS)
         );
@@ -22,6 +31,31 @@ export const topReposFetch = () => {
       .catch(error => {
         console.error(error);
         dispatch(serviceActionError(error, Actions.REPOS_FETCH_FAILED));
+      });
+  };
+};
+
+export const fetchRepo = repo => {
+  return dispatch => {
+    dispatch(serviceActionPending(Actions.REPO_FETCH_PENDING));
+    fetch(topReposUrl)
+      .then(response => response.json())
+      .then(responseJson => {
+        const repo = {
+          id: responseJson.id,
+          open_issues: responseJson.open_issues,
+          owner: responseJson.owner,
+          name: responseJson.name,
+          stargazers_count: responseJson.stargazers_count
+        };
+
+        dispatch(
+          serviceActionSuccess(responseJson.items, Actions.REPO_FETCH_SUCCESS)
+        );
+      })
+      .catch(error => {
+        console.error(error);
+        dispatch(serviceActionError(error, Actions.REPO_FETCH_FAILED));
       });
   };
 };

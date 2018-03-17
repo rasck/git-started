@@ -5,13 +5,14 @@ import {
   serviceActionSuccess
 } from "./ServiceActions";
 
-export const updateRepoInFav = url => {
+export const selectAndupdateRepoInFav = url => {
   return dispatch => {
     dispatch(serviceActionPending(Actions.FAV_REPOS_PENDING));
     fetch(url)
       .then(response => response.json())
-      .then(responseJson => {
-        dispatch(updateRepoInFavSimple(responseJson));
+      .then(repo => {
+        dispatch(updateRepoInFavSimple(repo));
+        dispatch(selectFavRepo({ repo }));
       })
       .catch(error => {
         console.error(error);
@@ -19,6 +20,8 @@ export const updateRepoInFav = url => {
       });
   };
 };
+
+
 
 export const addRepoToFav = payload => ({
   type: Actions.FAV_REPOS_ADD,

@@ -5,6 +5,7 @@ import FavRepos from "./FavRepos";
 import RepoDetail from "./RepoDetail";
 import RepoListItem from "./RepoListItem";
 import RepoList from "./RepoList";
+import FavRepoDetail from "./FavRepoDetail";
 import TopRepos from "./TopRepos";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -21,6 +22,9 @@ const FavReposNavigation = StackNavigator(
     },
     RepoDetails: {
       screen: RepoDetail
+    },
+    FavRepoDetail: {
+      screen: FavRepoDetail
     }
   },
   {

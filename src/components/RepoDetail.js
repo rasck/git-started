@@ -10,20 +10,8 @@ class RepoDetail extends Component {
     super(props);
     this.state = { repo: props.navigation.state.params.repo };
   }
-  componentDidMount() {
-    // const repo = this.props.navigation.state.params.repo;
 
-    if (this.state.repo.shouldUpdate) this.props.update(this.state.repo);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const repo = nextProps.navigation.state.params.repo;
-    if (repo.shouldUpdate) {
-      console.log("repo should update");
-      this.setState({ repo: repo });
-    }
-  }
-
+  // This is leakey. Repo details should not know this...
   isSelectedReopInFavourite() {
     if (this.props.favList) {
       //const repo = this.props.navigation.state.params.repo;
@@ -34,8 +22,8 @@ class RepoDetail extends Component {
     return false;
   }
 
+
   render() {
-    console.log("render repo details");
     // ToDo integrate navigation into redux, this get too cumbersome, errorprone and ugly...
     //const repo = this.props.navigation.state.params.repo;
     const repo = this.state.repo;
@@ -111,7 +99,8 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    favList: state.fav.data
+    favList: state.fav.data,
+    selected: state.fav.selectedRepo
   };
 };
 

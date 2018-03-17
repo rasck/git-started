@@ -1,7 +1,8 @@
 import {
   FAV_REPOS_ADD,
   FAV_REPOS_REMOVE,
-  FAV_REPOS_UPDATE
+  FAV_REPOS_UPDATE,
+  SELECT_FAV_REPO
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -21,18 +22,16 @@ function update(array, element) {
     }
     console.log("replacing item");
     // Otherwise, this is the one we want - return an updated value
-    return { id: element.id };
-    // return {
-    //   ...item,
-    //   ...element
-    // };
+    return {
+      ...item,
+      ...element
+    };
   });
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FAV_REPOS_ADD:
-      action.payload.shouldUpdate = true;
       const newState = Object.assign({}, state, {
         data: [...state.data, action.payload]
       });
@@ -43,9 +42,12 @@ export default (state = INITIAL_STATE, action) => {
       });
     case FAV_REPOS_UPDATE:
       console.log("updating");
-      action.payload.shouldUpdate = true;
       return Object.assign({}, state, {
         data: update(state.data, action.payload)
+      });
+    case SELECT_FAV_REPO:
+      return Object.assign({}, state, {
+        selectedRepo: action.payload
       });
     default:
       return state;

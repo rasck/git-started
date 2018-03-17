@@ -7,7 +7,6 @@ class RepoListItem extends Component {
   onRowPress() {
     const repo = this.props.repo;
     this.props.onSelect(repo);
-    this.props.navigation.navigate("RepoDetails", { repo });
   }
   render() {
     const { full_name, stargazers_count } = this.props.repo;

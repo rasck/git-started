@@ -1,36 +1,30 @@
 import {
-  REPOS_FETCH_SUCCESS,
-  REPOS_FETCH_PENDING,
-  REPOS_FETCH_FAILED,
-  SELECT_REPO
+  REPO_FETCH_SUCCESS,
+  REPO_FETCH_PENDING,
+  REPO_FETCH_FAILED
 } from "../actions/types";
 
 const INITIAL_STATE = {
   isLoading: false,
   error: undefined,
-  data: null,
-  selectedRepo: {}
+  repo: null
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case REPOS_FETCH_SUCCESS:
+    case REPO_FETCH_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        data: action.payload
+        repo: action.payload
       });
-    case REPOS_FETCH_PENDING:
+    case REPO_FETCH_PENDING:
       return Object.assign({}, state, {
         isLoading: true
       });
-    case REPOS_FETCH_FAILED:
+    case REPO_FETCH_FAILED:
       return Object.assign({}, state, {
         isLoading: false,
         error: action.error
-      });
-    case SELECT_REPO:
-      return Object.assign({}, state, {
-        selectedRepo: action.payload
       });
     default:
       return state;
