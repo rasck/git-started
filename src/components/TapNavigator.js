@@ -3,9 +3,7 @@ import { TabNavigator, StackNavigator, TabBarBottom } from "react-navigation";
 import TopReposfrom from "./TopRepos";
 import FavRepos from "./FavRepos";
 import RepoDetails from "./RepoDetails";
-import RepoListItem from "./RepoListItem";
-import RepoList from "./RepoList";
-import FavRepoDetails from "./FavRepoDetails";
+import FetchRepoDetails from "./FetchRepoDetails";
 import TopRepos from "./TopRepos";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -14,8 +12,8 @@ const FavReposNavigation = StackNavigator(
     FavRepos: {
       screen: FavRepos
     },
-    FavRepoDetails: {
-      screen: FavRepoDetails
+    FetchRepoDetails: {
+      screen: FetchRepoDetails
     }
   },
   {

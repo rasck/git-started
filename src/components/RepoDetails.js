@@ -17,9 +17,9 @@ class RepoDetail extends Component {
   }
 
   // This is leakey. Repo details should not know this...
+  // Should be moved into a HOC?
   isSelectedReopInFavourite() {
     if (this.props.favList) {
-      //const repo = this.props.navigation.state.params.repo;
       const result = this.props.favList.find(r => r.id === this.state.repo.id);
       if (result) return true;
       else return false;
@@ -32,8 +32,7 @@ class RepoDetail extends Component {
   }
 
   render() {
-    // ToDo integrate navigation into redux, this get too cumbersome, errorprone and ugly...
-    //const repo = this.props.navigation.state.params.repo;
+    // Too much happening in what should be a dump component that displays details info
     const repo = this.state.repo;
     const { open_issues, owner, name, stargazers_count } = repo;
     const isFav = this.isSelectedReopInFavourite();

@@ -8,9 +8,9 @@ class FavRepos extends Component {
   };
 
   onSelectRepo(repo) {
-    this.props.navigation.navigate("FavRepoDetails", {
-        repo
-      });
+    this.props.navigation.navigate("FetchRepoDetails", {
+      repo
+    });
   }
 
   render() {

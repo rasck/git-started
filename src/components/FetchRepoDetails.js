@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchRepo } from "../actions";
 import RepoDetails from "./RepoDetails";
 
-class FavRepoDetails extends Component {
+class FetchRepoDetails extends Component {
   componentDidMount() {
     this.props.fetchRepo(this.props.navigation.state.params.repo);
   }
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
   fetchRepo: (repo, props) => dispatch(fetchRepo(repo, props))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavRepoDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(FetchRepoDetails);

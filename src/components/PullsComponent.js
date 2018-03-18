@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableHighlight,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  Button
-} from "react-native";
+import { Text, View, FlatList, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
 import { addPullRequests } from "../actions";
 
@@ -20,8 +12,10 @@ class PullsComponent extends Component {
     return (
       <View
         style={{
-          height: 1,
-          backgroundColor: "#CED0CE"
+          //   height: 1,
+          backgroundColor: "#CED0CE",
+          marginBottom: 5,
+          marginTop: 5
         }}
       />
     );
@@ -64,7 +58,7 @@ class PullsComponent extends Component {
 }
 
 const RenderRow = ({ repo }) => (
-  <View>
+  <View style={{ backgroundColor: "#FAFAFA", padding: 5, borderRadius: 10 }}>
     <Text>Title: {repo.title}</Text>
     <Text>Number: {repo.number}</Text>
     <Text>State: {repo.status}</Text>
@@ -74,9 +68,10 @@ const RenderRow = ({ repo }) => (
 
 const styles = {
   pullsTextStyle: {
-    marginTop: 10,
+    marginTop: 15,
     fontSize: 20,
-    fontWeight: "600"
+    fontWeight: "600",
+    marginBottom: 5
   },
   pullsContainer: {
     flex: 1,

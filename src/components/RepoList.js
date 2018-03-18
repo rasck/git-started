@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ListView, FlatList, View, Text } from "react-native";
-import { SearchBar, List } from "react-native-elements";
+import { List } from "react-native-elements";
 import RepoListItem from "./RepoListItem";
 
 class RepoList extends Component {
